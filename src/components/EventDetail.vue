@@ -53,7 +53,18 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters, mapActions } from "vuex";
+export default {
+  props: ["slug"],
+  computed: {
+    ...mapGetters("storeEvents", ["detailEvent", "isLoaded"]),
+    ...mapActions("storeEvents", ["getEventBySlug(slug)"]),
+  },
+
+  created() {
+    this.getEventBySlug(this.slug);
+  },
+};
 </script>
 
 <style>

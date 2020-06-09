@@ -1,13 +1,13 @@
 <template>
   <v-app>
     <Navbar />
-    <v-content>
-      <v-container>
-        <transition name="router-anim">
-          <router-view />
-        </transition>
-      </v-container>
-    </v-content>
+    <!-- <v-content> -->
+    <v-container>
+      <transition name="router-anim">
+        <router-view />
+      </transition>
+    </v-container>
+    <!-- </v-content> -->
   </v-app>
 </template>
 

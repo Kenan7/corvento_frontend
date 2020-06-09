@@ -12,15 +12,10 @@ const routes = [
     component: Event,
   },
   {
-    path: "/event",
+    path: "/event/:slug",
     name: "eventDetail",
     component: EventDetail,
   },
-  // {
-  //   path: "/events/:slug",
-  //   name: "eventDetail",
-  //   component: EventDetail,
-  // },
   // {
   //   path: '/about',
   //   name: 'About',
