@@ -1,8 +1,10 @@
 # corvento-frontend
 
-![homepage_1](https://prnt.sc/sxiedj)
-![homepage_2](https://prnt.sc/sxif6z)
-![event_detail](https://prnt.sc/sxigsq)
+<a href="https://imgur.com/eTibJY2"><img src="https://i.imgur.com/eTibJY2.png" title="source: imgur.com" /></a>
+<br>
+<a href="https://imgur.com/vSvPtiJ"><img src="https://i.imgur.com/vSvPtiJ.png" title="source: imgur.com" /></a>
+<br>
+<a href="https://imgur.com/hxlJRqS"><img src="https://i.imgur.com/hxlJRqS.png" title="source: imgur.com" /></a>
 
 ## Project setup
 
