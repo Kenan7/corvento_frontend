@@ -15,6 +15,7 @@ const routes = [
     path: "/event/:slug",
     name: "eventDetail",
     component: EventDetail,
+    props: true,
   },
   // {
   //   path: '/about',

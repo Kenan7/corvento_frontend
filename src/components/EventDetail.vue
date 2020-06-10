@@ -3,41 +3,62 @@
     <v-hover>
       <template v-slot="{ hover }">
         <v-card
-          max-width="1500"
-          max-height="800"
-          class="mx-auto"
+          width="cardWidth"
           dark
           color="blue-grey darken-4"
           :elevation="hover ? 18 : 10"
-          to="/event"
         >
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="headline">
+              <v-list-item-title class="font-weight-thin">
                 {{ detailEvent.title }}
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
-          <v-img contain :src="detailEvent.image" height="300"></v-img>
+          <v-img :src="detailEvent.image"></v-img>
 
           <v-card-text>
-            {{ detailEvent.description }}
-          </v-card-text>
+            <v-chip
+              class="ma-2 text--white"
+              color="amber lighten-1"
+              outlined
+              :small="chipSize"
+            >
+              <v-icon left small color="amber lighten-1">mdi-code-json</v-icon>
+              {{ detailEvent.category.name }}
+            </v-chip>
 
-          <v-card-actions>
-            <v-btn text color="amber lighten-1">
-              Read
-            </v-btn>
-            <v-btn text color="amber lighten-1">
-              Bookmark
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-share-variant</v-icon>
+            <v-chip
+              class="ma-2 text--white"
+              color="amber lighten-1"
+              outlined
+              :small="chipSize"
+            >
+              <v-icon left small color="amber lighten-1"
+                >mdi-account-group</v-icon
+              >
+              {{ detailEvent.community }}
+            </v-chip>
+
+            <v-chip
+              class="ma-2 text--white"
+              color="amber lighten-1"
+              outlined
+              :small="chipSize"
+            >
+              <v-icon left small color="amber lighten-1">mdi-map-marker</v-icon>
+              {{ detailEvent.venue }}
+            </v-chip>
+          </v-card-text>
+          <div
+            v-html="detailEvent.description"
+            class="grey lighten-1 pa-4 mx-4"
+          ></div>
+          <v-card-actions class="justify-end">
+            <v-btn text color="#ff8906" class="text-capitalize">
+              ETKİNLİĞE GİT
+              <v-icon right large>mdi-chevron-right</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -47,16 +68,53 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   props: ["slug"],
   computed: {
+    cardWidth() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "220px";
+        case "sm":
+          return "400px";
+        case "md":
+          return "500px";
+        case "lg":
+          return "600px";
+        case "xl":
+          return "800px";
+        default:
+          return "400px";
+      }
+    },
+    chipSize() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return true;
+        case "sm":
+          return true;
+        case "md":
+          return false;
+        case "lg":
+          return false;
+        case "xl":
+          return false;
+        default:
+          return true;
+      }
+    },
     ...mapGetters("storeEvents", ["detailEvent", "isLoaded"]),
-    ...mapActions("storeEvents", ["getEventBySlug(slug)"]),
+  },
+  methods: {
+    // ...mapActions("storeEvents", ["getEventBySlug(slug)"]),
+    getEventBySlug() {
+      this.$store.dispatch("storeEvents/getEventBySlug", this.slug);
+    },
   },
 
   created() {
-    this.getEventBySlug(this.slug);
+    this.getEventBySlug();
   },
 };
 </script>
@@ -89,5 +147,9 @@ export default {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+.customWhite {
+  color: white !important;
 }
 </style>
